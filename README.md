@@ -1,8 +1,8 @@
-# ContentCarousel React Component
+# Carousel React Component
 
 ## Overview
 
-The `ContentCarousel` component is a flexible, customizable carousel/slider for React applications. It allows you to display a variety of content types in a sliding format, with the option to control how many items are displayed per slide.
+The `Carousel` component is a flexible, customizable carousel/slider for React applications. It allows you to display a variety of content types in a sliding format, with the option to control how many items are displayed per slide.
 
 ## Features
 
@@ -13,23 +13,23 @@ The `ContentCarousel` component is a flexible, customizable carousel/slider for 
 
 ## Installation
 
-1. Download both `ContentCarousel.js` and its associated `ContentCarousel.css` files.
+1. Download both `Carousel.js` and its associated `Carousel.css` files.
 2. Place them into your project's appropriate directory.
 
 ## Usage
 
-Here's how to use the `ContentCarousel` component in your React application:
+Here's how to use the `Carousel` component in your React application:
 
 ```jsx
 import React from 'react';
-import ContentCarousel from './path/to/ContentCarousel';
+import Carousel from './path/to/Carousel';
 
 const MyComponents = [<div>Item 1</div>, <div>Item 2</div>, <div>Item 3</div>];
 
 function App() {
   return (
     <div>
-      <ContentCarousel content={MyComponents} itemsPerSlide={2} />
+      <Carousel content={MyComponents} itemsPerSlide={2} />
     </div>
   );
 }
