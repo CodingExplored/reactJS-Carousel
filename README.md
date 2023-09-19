@@ -1,15 +1,15 @@
-# Carousel React Component
+# React Carousel Component
 
 ## Overview
 
-The `Carousel` component is a flexible, customizable carousel/slider for React applications. It allows you to display a variety of content types in a sliding format, with the option to control how many items are displayed per slide.
+The `Carousel` component is a flexible and reusable React component for creating carousels. It allows you to display a list of JSX elements, like images, with options to navigate through the items using "Next" and "Prev" buttons. Additionally, the component comes with slide-in and slide-out animations.
 
 ## Features
 
-- **Dynamic Content**: Supports dynamic content passed as an array of React components.
-- **Items per Slide**: Allows you to set how many items will be displayed in each slide.
-- **Navigation**: Offers previous and next buttons to navigate through the slides.
-- **Styling**: Provides CSS classes for styling, with a primary color of chocolate and a secondary color of #f3f3f3.
+- **Slide Animation**: Includes slide-in and slide-out animations for a better user experience.
+- **Items Per Slide**: Customize the number of items displayed per slide.
+- **Dimensions**: Set maximum height and width for the items displayed in the carousel.
+- **Styling**: Provides CSS classes for easy customization and styling.
 
 ## Installation
 
@@ -18,18 +18,30 @@ The `Carousel` component is a flexible, customizable carousel/slider for React a
 
 ## Usage
 
-Here's how to use the `Carousel` component in your React application:
+Here is a basic example to demonstrate how to integrate the Carousel component into a React application.
 
 ```jsx
 import React from 'react';
+import './App.css';
 import Carousel from './path/to/Carousel';
 
-const MyComponents = [<div>Item 1</div>, <div>Item 2</div>, <div>Item 3</div>];
+const MyComponents = [
+  <img src="https://example.com/image1.jpg" alt="Item 1" />,
+  <img src="https://example.com/image2.jpg" alt="Item 2" />,
+  // ... More JSX elements can be added here
+];
 
 function App() {
   return (
-    <div>
-      <Carousel content={MyComponents} itemsPerSlide={2} />
+    <div className="App">
+      <Carousel
+        style={{ height: "350px" }}
+        content={MyComponents}
+        itemsPerSlide={4}
+        title="A Good Title Here"
+        maxWidth="200px"
+        maxHeight="200px"
+      />
     </div>
   );
 }
@@ -37,8 +49,12 @@ function App() {
 
 ## Props
 
-- `content` (Array): An array of React components that make up the content of the carousel.
-- `itemsPerSlide` (Number): The number of items to be displayed in each slide.
+- `content` (Array): An array of JSX elements to be displayed in the carousel.
+- `itemsPerSlide` (Number): Number of items to be displayed per slide.
+- `title` (String, optional): An optional title for the carousel.
+- `maxWidth` (String, optional): Maximum width for the carousel items. e.g., `"200px"`
+- `maxHeight` (String, optional): Maximum height for the carousel items. e.g., `"200px"`
+- `style` (Object, optional): An optional style object to customize the carousel container.
 
 ## License
 

@@ -1,36 +1,41 @@
-import React, { useState } from 'react';
-import './styles/ContentCarousel.css';
+import React, { useState, useEffect } from 'react';
+import './styles/Carousel.css';
 
-const Carousel = ({ content, itemsPerSlide }) => {
-  // State to track the starting index of the displayed content for each slide
+const Carousel = ({ content, itemsPerSlide, title, maxWidth, maxHeight, style }) => {
   const [startIndex, setStartIndex] = useState(0);
+  const [animation, setAnimation] = useState('');
 
-  // Calculate the last index for the current slide
   const endIndex = Math.min(startIndex + itemsPerSlide, content.length);
 
-  // Move to the next slide
+  useEffect(() => {
+    if (animation) {
+      const timer = setTimeout(() => setAnimation(''), 500); // Remove animation after 0.5s
+      return () => clearTimeout(timer);
+    }
+  }, [animation]);
+
   const nextSlide = () => {
-    // If we're at the end, go back to the first item
+    setAnimation('slide-left'); // set animation class to slide-left
     setStartIndex(endIndex >= content.length ? 0 : endIndex);
   };
 
-  // Move to the previous slide
   const prevSlide = () => {
-    // If we're at the start, go to the last possible start index
+    setAnimation('slide-right'); // set animation class to slide-right
     setStartIndex(startIndex === 0 ? content.length - (content.length % itemsPerSlide) : startIndex - itemsPerSlide);
   };
 
   return (
-    <div className="Carousel-container">
-      <button className="ContentCarousel-button" onClick={prevSlide}>
-        Prev
-      </button>
-      <div className="Carousel-content">
-        {content.slice(startIndex, endIndex)}
+    <div className="Carousel-container" style={style}>
+      {title && <h1 className="Carousel-title">{title}</h1>}
+      <button className="Carousel-button left" onClick={prevSlide}>Prev</button>
+      <div className={`Carousel-content ${animation}`}>
+        {content.slice(startIndex, endIndex).map((item, index) => (
+          <div key={index} className="Carousel-item">
+            {React.cloneElement(item, { style: { maxWidth, maxHeight } })}
+          </div>
+        ))}
       </div>
-      <button className="Carousel-button" onClick={nextSlide}>
-        Next
-      </button>
+      <button className="Carousel-button right" onClick={nextSlide}>Next</button>
     </div>
   );
 };
